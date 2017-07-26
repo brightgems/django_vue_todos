@@ -28,5 +28,5 @@ export default {
     return api.delete(apiRoot + '/todos/clear_todos/')
       .then((response) => store.commit('CLEAR_TODOS'))
       .catch((error) => store.commit('API_FAIL', error))
-  }
+  },
 }

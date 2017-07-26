@@ -1,6 +1,7 @@
 
 <template>
   <div id="app">
+    <login></login>
     <Hello msg="TODO List"></Hello>
     <user-input></user-input>
     <todo-list></todo-list>
@@ -11,12 +12,14 @@
 import TodoList from './components/TodoList.vue'
 import UserInput from './components/UserInput.vue'
 import Hello from './components/Hello.vue'
+import login from './pages/user/login.vue'
 
 export default {
   components: {
     UserInput,
     TodoList,
-    Hello
+    Hello,
+    login
   }
 }
 </script>
