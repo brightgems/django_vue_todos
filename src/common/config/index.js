@@ -13,4 +13,4 @@ export const storage_prefix = 'djvue_admin_storage_'
 //base64加密前缀
 export const base64_prefix = 'djvue_admin_base64_'
 //接入服务器接口地址根目录
-export const server_base_url = '/'
+export const server_base_url = 'http://localhost:4000/'

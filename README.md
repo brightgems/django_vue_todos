@@ -1,6 +1,6 @@
 # todoapp
 
-> demo project of django+vue, use django rest api as backend, vue as frontend
+> demo project of django+vue full stack web application, use django rest api as backend, vue as frontend
 
 ## Build Setup
 

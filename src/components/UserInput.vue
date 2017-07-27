@@ -59,8 +59,6 @@
   
         this.$store.dispatch('addTodo', {
   
-          id: this.todos.length,
-  
           text: this.newTodoText
   
         })

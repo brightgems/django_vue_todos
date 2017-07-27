@@ -9,7 +9,7 @@
       <form class="form-signin" ref="form" :model="form" :rules="rules" >
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="">Email address</label>
-        <input type="email" id="inputEmail"  v-model="form.username" class="form-control" placeholder="User" required="true" autofocus="">
+        <input type="text" id="inputEmail"  v-model="form.username" class="form-control" placeholder="User" required="true" autofocus="">
         <label for="inputPassword" class="">Password</label>
         <input type="password"  v-model="form.password"  id="inputPassword" class="form-control" placeholder="Password" required="true">
         <div class="checkbox">
@@ -23,16 +23,16 @@
 </template>
 <script type="text/javascript">
   import {mapActions} from 'vuex'
-  import {port_user, port_code} from 'src/common/port_uri'
   import {SET_USER_INFO} from 'src/store/actions/type'
-  import {api} from 'src/store/api'
+  import api from 'src/store/api'
 
   export default{
     data(){
       return {
         form: {
-          username: "admin",
-          password: "admin"
+          // 使用admin帐号登陆会被拒绝
+          username: "bot",
+          password: "bot"
         },
         rules: {
           username: [{required: true, message: '请输入账户名！', trigger: 'blur'}],
@@ -48,12 +48,16 @@
       }),
       //提交
       submit_form() {
-        const apiRoot = 'http://localhost:4000'
-        api.post(apiRoot + '/api-auth/login').then(
+        const apiRoot = 'http://localhost:4000/'
+        this.$http.post(apiRoot + 'api/login',{'username': this.username, 'password': this.password}).then(
           (resp) => {
-            
+            console.log(resp.body)
+            this.$store.dispatch(SET_USER_INFO,resp.body)
           }
-        )
+        ).catch((resp)=>{
+          console.log(resp.status)
+          console.log(resp.body)
+        })
       }
     }
   }
