@@ -36,6 +36,6 @@ export default {
   },
   // Note that we added one more for logging out errors.
   'API_FAIL': function (state, response) {
-    state.error = response.body.detail
+    state.error = response.body
   }
 }

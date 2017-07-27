@@ -49,7 +49,7 @@
       //提交
       submit_form() {
         const apiRoot = 'http://localhost:4000/'
-        this.$http.post(apiRoot + 'api/login',{'username': this.username, 'password': this.password}).then(
+        api.post('api/login',{'username': this.username, 'password': this.password}).then(
           (resp) => {
             console.log(resp.body)
             this.$store.dispatch(SET_USER_INFO,resp.body)

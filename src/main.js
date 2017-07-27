@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store'
-// import './assets/bootstrap.min.css'
+import Router from 'vue-router'
+import { sync } from 'vuex-router-sync'
+
+Vue.use(Router)
 
 /* eslint-disable no-new */
 var v = new Vue({
@@ -9,5 +12,3 @@ var v = new Vue({
   store: store,
   components: { App }
 })
-// This should be the only new line ***
-v.$store.dispatch('getTodos')

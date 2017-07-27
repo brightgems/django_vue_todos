@@ -1,6 +1,6 @@
 <template>
   <div id="todolist">
-    <div> {{error.data}} </div>
+    <div> {{error}} </div>
     <h2>createTodo(press Enter)</h2>
       <div class="table-responsive">
             <table class="table table-striped">
@@ -29,11 +29,12 @@ import Todo from './Todo.vue'
 import { mapState } from 'vuex'
 
 export default {
+
   components: {
     Todo
   },
   computed: {
     ...mapState(['error', 'todos'])
-  }
+  },
 }
 </script>
