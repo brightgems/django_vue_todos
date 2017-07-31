@@ -15,17 +15,17 @@ export default {
   // We added a getTodos action for the initial load from the server
   // These URLs come straight from the Django URL router we did in Part 3
   getTodos(store) {
-    return api.get(apiRoot + '/todos/')
+    return api.get(apiRoot + '/api/todos/')
       .then((response) => store.commit('GET_TODOS', response))
       .catch((error) => store.commit('API_FAIL', error))
   }, 
   addTodo(store, todo) {
-    return api.post(apiRoot + '/todos/', todo)
+    return api.post(apiRoot + '/api/todos/', todo)
       .then((response) => store.commit('ADD_TODO', response))
       .catch((error) => store.commit('API_FAIL', error))
   }, 
   clearTodos(store) {
-    return api.delete(apiRoot + '/todos/clear_todos/')
+    return api.delete(apiRoot + '/api/todos/clear_todos/')
       .then((response) => store.commit('CLEAR_TODOS'))
       .catch((error) => store.commit('API_FAIL', error))
   },

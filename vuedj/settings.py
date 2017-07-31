@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import datetime
+from corsheaders.defaults import default_methods, default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -154,8 +155,11 @@ CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:4000'
 )
 
-CORS_ORIGIN_ALLOW_ALL= True
+CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ALLOW_METHODS = default_methods
+
+CORS_ALLOW_HEADERS = default_headers
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (

@@ -26,6 +26,7 @@
   import {mapActions} from 'vuex'
   import {SET_USER_INFO} from 'src/store/actions/type'
   import api from 'src/store/api'
+  import qs from 'qs'
 
   export default{
     data(){
@@ -50,7 +51,12 @@
       //提交
       submit_form() {
         const apiRoot = 'http://localhost:4000/'
-        api.post('api/login',{'username': this.username, 'password': this.password}).then(
+        var data  = qs.stringify({'username': this.username, 'password': this.password}, {
+       'headers': {
+           'Content-Type': 'application/json'
+       }
+   })
+        this.axios.post('/api-token-auth',data = data).then(
           (resp) => {
             console.log(resp.body)
             this.$store.dispatch(SET_USER_INFO,resp.body)
@@ -63,7 +69,7 @@
     }
   }
 </script>
-<style  scoped>
+<style lang='scss' scoped>
   .login-body {
     position: absolute;
     left: 0;
