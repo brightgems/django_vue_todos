@@ -8,7 +8,13 @@ Vue.use(Router)
 
 /* eslint-disable no-new */
 var v = new Vue({
-  el: 'body',
+  el: 'app',
   store: store,
-  components: { App }
+  components: { App },
+      mounted() {
+      console.log('app init')
+    // return the Promise from the action
+    store.dispatch('getTodos')
+
+    }
 })

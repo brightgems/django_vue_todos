@@ -19,6 +19,7 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" @click="submit_form">Sign in</button>
       </form>
+    </div>
   </div>
 </template>
 <script type="text/javascript">
@@ -62,7 +63,7 @@
     }
   }
 </script>
-<style lang="scss" type="text/scss" rel="stylesheet/scss">
+<style  scoped>
   .login-body {
     position: absolute;
     left: 0;

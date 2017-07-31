@@ -7,40 +7,48 @@ from rest_framework.decorators import list_route,api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.exceptions import ValidationError
+from rest_framework.views import APIView
 from .models import Todo
 from .serializers import TodoSerializer
 
 def index(request):
     return render(request, 'index.html')
 
-@api_view(['POST'])
-def login(request):
+
+class LoginView(APIView):
     """
-    Try to login a customer (food orderer)
+      custom login api, allow use identity of username or email
     """
-    data = request.data
+    authentication_classes = ()
+    permission_classes = (permissions.AllowAny,)
 
-    try:
-        username = data['username']
-        password = data['password']
-    except:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, format=None):
+        """
+        Try to login a customer (food orderer)
+        """
+        data = request.data
 
-    try:
-        user = User.objects.get(username=username)
-        if not check_password(password,user.password):
-            raise ValidationError('wrong password!')
-    except Exception as ex:
-        return Response({'detail':str(ex)},status=status.HTTP_401_UNAUTHORIZED)
+        try:
+            username = data['username']
+            password = data['password']
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = User.objects.get(username=username)
+            if not check_password(password,user.password):
+                raise ValidationError('wrong password!')
+        except Exception as ex:
+            return Response({'detail':str(ex)},status=status.HTTP_401_UNAUTHORIZED)
 
 
-    try:
-        user_token = user.auth_token.key
-    except:
-        user_token = Token.objects.create(user=user)
+        try:
+            user_token = user.auth_token.key
+        except:
+            user_token = Token.objects.create(user=user)
 
-    data = {'token': user_token}
-    return Response(data=data, status=status.HTTP_200_OK)
+        data = {'token': user_token}
+        return Response(data=data, status=status.HTTP_200_OK)
 
 class TodoViewSet(viewsets.ModelViewSet):
     queryset = Todo.objects.all()

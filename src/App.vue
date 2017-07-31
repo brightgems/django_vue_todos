@@ -20,13 +20,7 @@ export default {
     TodoList,
     Hello,
     login
-  },
-      mounted() {
-      console.log('app init')
-    // return the Promise from the action
-    v.$store.dispatch('getTodos')
-
-    }
+  }
 }
 </script>
 
