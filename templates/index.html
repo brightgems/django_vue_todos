@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load staticfiles %}
 <html>
 
 <head>
@@ -6,10 +6,12 @@
   <title>todoapp</title>
   <link rel=stylesheet href=http://gpu.rocks/css/bootstrap.min.css>
 </head>
-<div class="well"> 
-<h1> Todo API Home</h1>
-</div>
 <body>
+  <div class="well"> 
+    <h1> Todo API Home</h1>
+  </div>
+  <app></app>
+  <script src={%static 'app.c152b64b74d9b5f519bb.js'%}> </script>
 </body>
 
 </html>
