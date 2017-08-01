@@ -56,7 +56,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
+    # 'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -150,16 +151,27 @@ NOSE_ARGS = [
 
 CORS_ORIGIN_WHITELIST = (
     'google.com',
-    'hostname.example.com',
-    "localhost:8080"
-    '127.0.0.1:4000'
+    'localhost:9527',
+    'localhost:8080',
+    '127.0.0.1:9527'
 )
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CSRF_TRUSTED_ORIGINS = (
+#     'google.com',
+#     'localhost:9527',
+#     'localhost:8080',
+#     '127.0.0.1:9527'
+# )
+
+CORS_ORIGIN_REGEX_WHITELIST = (r'^(http?://)?localhost(\w+)$', )
+
+CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ALLOW_METHODS = default_methods
 
 CORS_ALLOW_HEADERS = default_headers
+
+CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (

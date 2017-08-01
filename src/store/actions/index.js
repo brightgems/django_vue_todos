@@ -5,28 +5,35 @@ import * as actions from './type'
 import * as mutations from './type'
 import api from '../api.js'
 
-const apiRoot = 'http://localhost:4000'
 
 export default {
-  // 设置用户信息和登录
-  [actions.SET_USER_INFO] ( { commit }, userinfo) {
-    commit(mutations.SET_USER_INFO, userinfo)
-  }, 
   // We added a getTodos action for the initial load from the server
   // These URLs come straight from the Django URL router we did in Part 3
   getTodos(store) {
-    return api.get(apiRoot + '/api/todos/')
+    return api.get('/api/todos/')
       .then((response) => store.commit('GET_TODOS', response))
       .catch((error) => store.commit('API_FAIL', error))
   }, 
   addTodo(store, todo) {
-    return api.post(apiRoot + '/api/todos/', todo)
+    return api.post('/api/todos/', todo)
       .then((response) => store.commit('ADD_TODO', response))
       .catch((error) => store.commit('API_FAIL', error))
   }, 
   clearTodos(store) {
-    return api.delete(apiRoot + '/api/todos/clear_todos/')
+    return api.delete('/api/todos/clear_todos/')
       .then((response) => store.commit('CLEAR_TODOS'))
       .catch((error) => store.commit('API_FAIL', error))
   },
+  login(store, data){
+    
+    return api.post('/api-jwt-auth/', data).then(
+          (resp) => {
+            console.log('login success')
+            commit(mutations.SET_USER_INFO, resp.body)
+          }
+        ).catch((resp)=>{
+          console.log('login error')
+          console.log(resp.body)
+        })
+  }
 }

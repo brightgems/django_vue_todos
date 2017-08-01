@@ -10,6 +10,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.views import APIView
 from .models import Todo
 from .serializers import TodoSerializer
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     return render(request, 'index.html')
@@ -21,7 +22,7 @@ class LoginView(APIView):
     """
     authentication_classes = ()
     permission_classes = (permissions.AllowAny,)
-
+    @csrf_exempt
     def post(self, request, format=None):
         """
         Try to login a customer (food orderer)
