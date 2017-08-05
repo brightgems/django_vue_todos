@@ -6,7 +6,7 @@
         <img src="./images/login_logo.png"/>
       </div>
 
-      <form class="form-signin" ref="form" :model="form" :rules="rules" >
+      <div class="form-signin" ref="form" :model="form">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="">Email address</label>
         <input type="text" id="inputEmail"  v-model="form.username" class="form-control" placeholder="User" required="true" autofocus="">
@@ -18,15 +18,12 @@
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" @click="submit_form">Sign in</button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
 <script type="text/javascript">
-  import {mapActions} from 'vuex'
-  import {SET_USER_INFO} from 'src/store/actions/type'
   import api from 'src/store/api'
-  import qs from 'qs'
 
   export default{
     data(){
@@ -45,13 +42,12 @@
       }
     },
     methods: {
-      ...mapActions({
-        set_user_info: SET_USER_INFO
-      }),
       //提交
       submit_form() {
-        var data  ={'username': this.form.username, 'password': this.form.password}
+        var data  ={username: this.form.username, password: this.form.password}
         this.$store.dispatch('login', data)
+        this.$router.push({ path: '/' });
+
       }
     }
   }
@@ -61,6 +57,8 @@
     position: absolute;
     left: 0;
     top: 0;
+    width: 100%;
+    height: 100%;
     background-image: url(./images/login_bg.jpg);
     background-repeat: no-repeat;
     background-position: center;

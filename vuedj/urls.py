@@ -17,9 +17,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
     url(r'^api/docs/', schema_view),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^accounts/', include('rest_framework.urls', namespace='rest_framework')),
     # {"non_field_errors":["Unable to log in with provided credentials."]}
     url(r'^api-token-auth', token_views.obtain_auth_token),
     url(r'^api-jwt-auth', obtain_jwt_token),
-    url(r'^api/login', views.LoginView.as_view(),name='login')
+    url(r'^api/login/', views.LoginView.as_view(),name='login'),
+  
 ]

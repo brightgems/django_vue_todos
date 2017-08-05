@@ -30,7 +30,13 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         staticPath:'/static/',
-        proxyTable: {},
+        proxyTable: {
+                '/api':{target:'http://localhost:4000', changeOrigin:true,
+                pathRewrite: {                //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+                '^/api': ''
+                }
+            }
+        },
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README
         // (https://github.com/webpack/css-loader#sourcemaps)

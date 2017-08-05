@@ -25,10 +25,10 @@ export default {
   // returned by the Promise.
   // The mutations are in charge of updating the client state.
   'GET_TODOS': function (state, response) {
-    state.todos = response.body.results
+    state.todos = response.data.results
   },
   'ADD_TODO': function (state, response) {
-    state.todos.push(response.body)
+    state.todos.push(response.data)
   },
   'CLEAR_TODOS': function (state) {
     const todos = state.todos
@@ -36,6 +36,6 @@ export default {
   },
   // Note that we added one more for logging out errors.
   'API_FAIL': function (state, response) {
-    state.error = response.body
+    state.error = response.data
   }
 }

@@ -11,6 +11,7 @@ from rest_framework.views import APIView
 from .models import Todo
 from .serializers import TodoSerializer
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login
 
 def index(request):
     return render(request, 'index.html')
@@ -28,7 +29,7 @@ class LoginView(APIView):
         Try to login a customer (food orderer)
         """
         data = request.data
-
+        
         try:
             username = data['username']
             password = data['password']
@@ -47,7 +48,7 @@ class LoginView(APIView):
             user_token = user.auth_token.key
         except:
             user_token = Token.objects.create(user=user)
-
+        login(request, user)
         data = {'token': user_token}
         return Response(data=data, status=status.HTTP_200_OK)
 

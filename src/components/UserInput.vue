@@ -1,5 +1,5 @@
 <template>
-  <div id="user-inputs">
+  <div id="container">
   
     <div class="row">
   

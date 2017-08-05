@@ -30,7 +30,7 @@ SECRET_KEY = 'n3@wsgyxr)65$+s%z=b7#@8460%t_t0&s*elevyu%h5w_0i9@@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.192.168.0.150', '.localhost', 'parking.fr']
+ALLOWED_HOSTS = ['127.0.0.1', '.192.168.1.5', '.localhost', 'parking.fr']
 INTERNAL_IPS = ['127.0.0.1']
 
 
@@ -132,13 +132,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'staticfiles'),
+# )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 
 APPEND_SLASH = True
 
@@ -155,7 +155,8 @@ CORS_ORIGIN_WHITELIST = (
     'google.com',
     'localhost:9527',
     'localhost:8080',
-    '127.0.0.1:9527'
+    '127.0.0.1:9527',
+    '192.168.1.5:9527'
 )
 
 # CSRF_TRUSTED_ORIGINS = (
@@ -178,13 +179,13 @@ CORS_ALLOW_CREDENTIALS = True
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
             'rest_framework.renderers.JSONRenderer',
-            'rest_framework.renderers.BrowsableAPIRenderer',
+            # 'rest_framework.renderers.BrowsableAPIRenderer',
         ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication'
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication'
         ),
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly', ),
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend', ),

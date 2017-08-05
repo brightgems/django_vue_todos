@@ -1,56 +1,42 @@
-
 <template>
-  <div id="app">
-    <login></login>
-    <Hello msg="TODO List"></Hello>
-    <user-input></user-input>
-    <todo-list></todo-list>
+  <div class="view-page">
+      <router-view></router-view>
   </div>
 </template>
-
-<script>
-import TodoList from './components/TodoList.vue'
-import UserInput from './components/UserInput.vue'
-import Hello from './components/Hello.vue'
-import login from './pages/user/login.vue'
-
-export default {
-  components: {
-    UserInput,
-    TodoList,
-    Hello,
-    login
-  }
-}
-</script>
-
-<style>
+<<style>
 html {
-  height: 100%;
+  height: 80%;
 }
 
 body {
-  display: flex;
+  displ`y: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
 }
 
-#app {
-  color: #2c3e50;
-  margin-top: -100px;
-  max-width: 600px;
-  font-family: Source Sans Pro, Helvetica, sans-serif;
-  text-align: center;
+body {
+	margin: 0px;
+	padding: 0px;
+	/*background: url(assets/bg1.jpg) center !important;
+		background-size: cover;*/
+	// background: #1F2D3D;
+	font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
 }
 
-#app a {
-  color: #42b983;
-  text-decoration: none;
-}
-
-.logo {
-  width: 100px;
-  height: 100px
+.view-page {
+	position: absolute;
+	top: 120px;
+	bottom: 0px;
+	width: 100%;
 }
 </style>
+
+<script type="text/javascript">
+
+  export default{
+    name: 'page',
+  }
+</script>
